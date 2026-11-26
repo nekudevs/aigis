@@ -10,6 +10,18 @@ updates:
       # typescript-eslint does not support TypeScript 7 yet.
       - dependency-name: typescript
         versions: ['>=6.1.0']
+      # Types must match the Node major the bot runs on.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore
+    ignore:
+      - dependency-name: node
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule:

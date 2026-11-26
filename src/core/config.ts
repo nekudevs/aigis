@@ -7,6 +7,7 @@ const schema = z.object({
   DISCORD_APP_ID: snowflake,
   DISCORD_GUILD_ID: snowflake,
   DATABASE_PATH: z.string().min(1).default('./data/aigis.db'),
+  BACKUP_DIR: z.string().min(1).default('./data/backups'),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'silent']).default('info'),
 });
 

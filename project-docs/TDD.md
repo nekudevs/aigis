@@ -108,7 +108,7 @@ Rules:
 - Round deadlines, reminders and translation timeouts are stored as timestamps and checked by a periodic job, so they survive restarts.
 - Discord attachment links expire, so Aigis keeps the message holding a screenshot and links to the message.
 
-**Backups:** daily online backup, keep 14, copy one off the host. Test a restore before real data accumulates.
+**Backups:** `core/backup.ts` makes an online backup once per UTC day, checked hourly and at startup, and keeps 14. They are written to a host folder outside the Docker volume. Copying them off the PC is the operator's choice (`BACKUP_HOST_DIR`). Restore steps are in the README.
 
 ## 5. Music
 
@@ -190,7 +190,7 @@ Rules:
 
 ## 11. Configuration
 
-Environment variables: `DISCORD_TOKEN`, `DISCORD_APP_ID`, `DISCORD_GUILD_ID`, `DATABASE_PATH`, `LOG_LEVEL`, `LAVALINK_PASSWORD`, `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` (scoped to Workers AI only).
+Environment variables: `DISCORD_TOKEN`, `DISCORD_APP_ID`, `DISCORD_GUILD_ID`, `DATABASE_PATH`, `BACKUP_DIR`, `BACKUP_HOST_DIR` (Compose only), `LOG_LEVEL`, `LAVALINK_PASSWORD`, `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` (scoped to Workers AI only).
 
 Channels, schedules and weights are settings in the database.
 

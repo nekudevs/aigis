@@ -1,5 +1,6 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { createApp } from './app.js';
+import { scheduleBackups } from './core/backup.js';
 import { loadConfig } from './core/config.js';
 import { openDatabase } from './core/db.js';
 import { enforceGuildLock } from './core/guild-lock.js';
@@ -11,6 +12,7 @@ const logger = createLogger(config.LOG_LEVEL);
 const db = openDatabase(config.DATABASE_PATH);
 const { registry, settings } = createApp(db);
 const route = createRouter({ guildId: config.DISCORD_GUILD_ID, registry, settings, logger });
+const stopBackups = scheduleBackups(db, config.BACKUP_DIR, logger);
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -33,6 +35,7 @@ client.on(Events.Error, (error) => logger.error({ err: error }, 'client error'))
 
 async function shutdown(): Promise<void> {
   logger.info('shutting down');
+  stopBackups();
   await client.destroy();
   db.close();
   process.exit(0);

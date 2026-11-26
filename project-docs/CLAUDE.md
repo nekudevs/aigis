@@ -11,6 +11,7 @@ Requirements are in `project-docs/PRD.md` and design in `project-docs/TDD.md`. B
 - Single test: `npx vitest run path/to/file.test.ts`
 - Typecheck and lint: `npm run typecheck`, `npm run lint`, `npm run format:check`
 - Register slash commands: `npm run register`
+- Docker: `docker compose build`, `docker compose up -d`
 
 ## Architecture & Conventions
 
@@ -44,4 +45,6 @@ Requirements are in `project-docs/PRD.md` and design in `project-docs/TDD.md`. B
 - Pin TypeScript to 6.0.x until typescript-eslint supports 7.
 - Never read `.env`. Keep `.env.example` in step with `src/core/config.ts`, with no real values.
 - Re-run `npm run register` after changing command definitions.
+- The image installs with `--ignore-scripts` because better-sqlite3 ships prebuilt binaries. A new dependency that needs an install script will break there.
+- `docker compose config` prints `.env` values; use `--quiet`.
 - `throwaway-*` files are private notes and are git-ignored. Keep them that way.
