@@ -34,6 +34,11 @@ export function createRouter({ guildId, registry, settings, logger }: RouterDeps
       }
       if (!command) {
         logger.warn({ command: interaction.commandName }, 'unknown command, re-run register');
+        const locale = settings.localeFor(guildId, interaction.user.id);
+        await interaction.reply({
+          content: translator(locale)('error.unknownCommand'),
+          flags: MessageFlags.Ephemeral,
+        });
         return;
       }
       const locale = settings.localeFor(guildId, interaction.user.id);

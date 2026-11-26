@@ -1,5 +1,6 @@
 export const en = {
   'error.generic': 'Something went wrong. Reference: {id}',
+  'error.unknownCommand': 'That command is no longer available.',
   'error.wrongServer': 'I only work in my home server.',
 
   'ping.description': 'Check that Aigis is awake',

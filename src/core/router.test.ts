@@ -23,6 +23,15 @@ function routerFor(execute: Command['execute']) {
 }
 
 describe('router failures', () => {
+  it('answers a command that is registered with Discord but no longer exists', async () => {
+    const route = routerFor(() => Promise.resolve());
+    const interaction = fakeCommand({ command: 'removed' });
+
+    await route(interaction as unknown as Interaction);
+
+    expect(interaction.reply.mock.calls[0]?.[0].content).toContain('no longer available');
+  });
+
   it('replies with a reference and no error detail', async () => {
     const route = routerFor(() => Promise.reject(new Error('secret detail')));
     const interaction = fakeCommand({ command: 'boom' });

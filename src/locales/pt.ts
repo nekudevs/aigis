@@ -2,6 +2,7 @@ import type { MessageKey } from './en.js';
 
 export const pt: Record<MessageKey, string> = {
   'error.generic': 'Algo correu mal. Referência: {id}',
+  'error.unknownCommand': 'Esse comando já não está disponível.',
   'error.wrongServer': 'Só funciono no meu servidor.',
 
   'ping.description': 'Verifica se a Aigis está acordada',
