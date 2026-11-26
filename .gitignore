@@ -6,6 +6,7 @@ throwaway-*
 .env.*
 !.env.example
 data/
+backups/
 *.db
 *.db-*
 

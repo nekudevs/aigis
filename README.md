@@ -6,7 +6,7 @@ This is a private bot, built for one server. If you would like to set it up your
 
 ## Status
 
-**Milestone M0 (foundation) is working on Discord.** The MVP will run on the operator's PC.
+**M0 (foundation) and M1 (Docker and backups) are verified on Discord.** The MVP runs on the operator's PC.
 
 Working commands: `/ping`, `/help`, `/language`, `/timezone`, `/config`.
 
@@ -24,7 +24,7 @@ In proposed build order:
 
 ## Stack
 
-TypeScript, Node.js (24 targeted, 22.12 minimum), discord.js, SQLite, Vitest. Planned: Lavalink, Cloudflare Workers AI, Docker.
+TypeScript, Node.js (24 targeted, 22.12 minimum), discord.js, SQLite, Vitest, Docker. Planned: Lavalink, Cloudflare Workers AI.
 
 ## Setup
 
@@ -44,6 +44,39 @@ For the operator.
    ```
 
 The bot leaves any server other than `DISCORD_GUILD_ID`.
+
+## Run with Docker
+
+This is how the bot stays online. Stop `npm run dev` first: two copies with one token both answer.
+
+```sh
+docker compose build
+docker compose run --rm bot node dist/register.js   # after command changes
+docker compose up -d
+docker compose logs -f bot
+```
+
+After pulling new code, run `build` and `up -d` again. Stop with `docker compose down`, and never add `-v`, which deletes the database.
+
+To bring across data from running without Docker, once, before the first `up` (PowerShell):
+
+```powershell
+docker compose run --rm -v "${PWD}\data:/import:ro" bot sh -c "cp /import/aigis.db* /data/"
+```
+
+To stay online, enable "Start Docker Desktop when you sign in" in Docker Desktop and stop the PC from sleeping.
+
+### Backups
+
+Aigis writes one backup a day and keeps the newest 14, in `./backups` or in `BACKUP_HOST_DIR` if set in `.env`. A folder that syncs off the PC protects against disk failure; backups contain members' data, so keep it private.
+
+To restore, replace the date:
+
+```sh
+docker compose stop bot
+docker compose run --rm bot sh -c "cp /backups/aigis-YYYY-MM-DD.db /data/aigis.db && rm -f /data/aigis.db-wal /data/aigis.db-shm"
+docker compose start bot
+```
 
 ## Checks
 
@@ -71,4 +104,5 @@ npm run build
 - 2026-11-26: requirements and design approved.
 - 2026-11-26: M0 foundation, CI and `.env.example`.
 - 2026-11-26: `/timezone` now offers a fixed list of 24 offsets.
-- 2026-11-26: review fix: a command that no longer exists now gets a reply. M0 merged ([PR #1](https://github.com/nekudevs/aigis/pull/1)). Documents committed locally; privacy policy and terms published as gists.
+- 2026-11-26: review fix: a command that no longer exists now gets a reply. M0 merged ([PR #1](https://github.com/nekudevs/aigis/pull/1)). Privacy policy and terms published as gists.
+- 2026-11-26: M1: Docker Compose and daily backups, verified on the operator's PC.

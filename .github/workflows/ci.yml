@@ -25,6 +25,12 @@ jobs:
       - run: npm run build
       - run: npm audit --audit-level=high
 
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t aigis-bot .
+
   secrets:
     runs-on: ubuntu-latest
     steps:
