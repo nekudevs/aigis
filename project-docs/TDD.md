@@ -84,7 +84,7 @@ Rules:
 - **Intents:** `Guilds`, `GuildMessages`, `GuildVoiceStates` and the privileged `MessageContent`. The last is needed for screenshot lookup, unprompted replies and translation, including when reading history. Enable it in the developer portal.
 - **Permissions:** view, send, embed, attach, read history, connect, speak, and private thread creation and sending in threads. Never Administrator.
 - **Command registration:** guild-scoped, through a separate script.
-- **Two applications:** development and production, with separate tokens.
+- **One application, one server:** development happens on the same server the group uses, so test in a private channel. Add a separate development application if that becomes disruptive.
 
 ## 4. Data
 
@@ -165,7 +165,7 @@ Rules:
 | Integration | Repositories, migrations, constraints, due-job recovery after restart | Real temporary SQLite |
 | Handler | Permissions, validation, error replies, opt-outs | Minimal fake interaction |
 | Contract | Unique command names and aliases, custom ID prefixes, every string in both locales, every character entry valid | Tests over the registry and `content/` |
-| Smoke | Discord behaviour and real playback | Manual checklist on the development server |
+| Smoke | Discord behaviour and real playback | Manual checklist in a private channel |
 
 - No network or real credentials in tests or CI.
 - No coverage target. Every bug fix gets a test that fails before the fix.
@@ -200,7 +200,7 @@ One branch and pull request each. Order follows PRD section 7.
 
 | Milestone | Deliverable | Needed from the operator |
 |---|---|---|
-| M0 | Scaffold, config, database, router, registry, aliases, i18n, server lock, `/ping`, `/help`, `/language`, `/timezone`, `/config`, tests, CI | Development application, token, test server |
+| M0 | Scaffold, config, database, router, registry, aliases, i18n, server lock, `/ping`, `/help`, `/language`, `/timezone`, `/config`, tests, CI | Application, token, server |
 | M1 | Docker Compose on the local PC, backups | Docker Desktop running |
 | M2 | Music | A voice channel for testing |
 | M3 | Sharing and Krillion | Channels |

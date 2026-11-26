@@ -2,6 +2,8 @@
 
 A private Discord bot for a small group of friends. Named after the android in Persona 3 who learns to be human.
 
+This is a private bot, built for one server. If you would like to set it up yourself, contact [nekudevs](https://github.com/nekudevs) for more details.
+
 ## Status
 
 **Milestone M0 (foundation) is written and passes its tests, but has not run against Discord yet.** The MVP will run on the operator's PC.
@@ -26,20 +28,13 @@ TypeScript, Node.js (24 targeted, 22.12 minimum), discord.js, SQLite, Vitest. Pl
 
 ## Setup
 
-1. In the [Discord Developer Portal](https://discord.com/developers/applications), create a development application. Copy the Application ID and, on the Bot page, a token.
-2. Turn off **Public Bot**. If the portal refuses, first set the install link to "None" on the Installation page.
-3. Create a test server. Invite the bot with the `bot` and `applications.commands` scopes and the View Channels and Send Messages permissions.
+For the operator.
+
+1. In the [Discord Developer Portal](https://discord.com/developers/applications), create an application. Copy the Application ID and, on the Bot page, a token.
+2. On the Installation page, keep **Guild Install** only and set the install link to **None**. Then turn off **Public Bot** on the Bot page.
+3. On OAuth2, use the URL Generator with the `bot` and `applications.commands` scopes and the View Channels and Send Messages permissions. Open the URL and add the bot to the server.
 4. In Discord, enable Developer Mode, then copy the server ID.
-5. Create a `.env` file in the project root:
-
-   | Variable | Value |
-   |---|---|
-   | `DISCORD_TOKEN` | Bot token (secret) |
-   | `DISCORD_APP_ID` | Application ID |
-   | `DISCORD_GUILD_ID` | Server ID |
-   | `DATABASE_PATH` | Optional, default `./data/aigis.db` |
-   | `LOG_LEVEL` | Optional, default `info` |
-
+5. Copy `.env.example` to `.env` and fill it in.
 6. Run:
 
    ```sh
@@ -66,6 +61,7 @@ npm run build
 - [Technical design](project-docs/TDD.md)
 - [Aigis persona](project-docs/PERSONA.md)
 - [Project rules for Claude Code](project-docs/CLAUDE.md)
+- [Privacy Policy](https://gist.github.com/nekudevs/7c43b0ea88ef2fcf83fa1d4afb0faaf2) and [Terms of Service](https://gist.github.com/nekudevs/81cf662fd8af487f2a0de7b82cf354b6) (sources in `docs/legal/`)
 
 ## Latest changes
 
@@ -73,4 +69,4 @@ npm run build
 - 2026-11-26: second draft after review: music required, free-tier AI, translation, daily character, persona notes.
 - 2026-11-26: third draft: local hosting for the MVP, Krillion scoring, language defaults, W/L voting.
 - 2026-11-26: requirements and design approved.
-- 2026-11-26: M0 foundation and CI. Nothing is committed yet.
+- 2026-11-26: M0 foundation, CI and `.env.example`. Documents committed locally; privacy policy and terms published as gists.

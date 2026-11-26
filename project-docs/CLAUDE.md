@@ -42,6 +42,6 @@ Requirements are in `project-docs/PRD.md` and design in `project-docs/TDD.md`. B
 - Target is Node 24 LTS; the development machine had Node 22.15 on 2026-11-26.
 - Primary development is on Windows, deployment is Linux in Docker. `better-sqlite3` is native, so never copy `node_modules` into the image.
 - Pin TypeScript to 6.0.x until typescript-eslint supports 7.
-- Claude Code cannot read or write `.env*` files here; environment variables are documented in the README.
+- Never read `.env`. Keep `.env.example` in step with `src/core/config.ts`, with no real values.
 - Re-run `npm run register` after changing command definitions.
 - `throwaway-*` files are private notes and are git-ignored. Keep them that way.
