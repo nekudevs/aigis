@@ -1,0 +1,17 @@
+# private notes (this repo is public)
+throwaway-*
+
+# secrets and local data
+.env
+.env.*
+!.env.example
+data/
+*.db
+*.db-*
+
+# build output
+node_modules/
+dist/
+coverage/
+
+.claude/settings.local.json
