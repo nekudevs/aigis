@@ -15,7 +15,7 @@ export const pt: Record<MessageKey, string> = {
   'language.saved': 'Vou responder-te em português.',
 
   'timezone.description': 'Define o teu fuso horário',
-  'timezone.option': 'Fuso horário, por exemplo Europe/Lisbon',
+  'timezone.option': 'O teu fuso horário',
   'timezone.saved': 'O teu fuso horário passou a ser {zone}.',
   'timezone.invalid': 'Não conheço esse fuso horário.',
 

@@ -24,7 +24,7 @@ Aigis is a private Discord bot for one server of about 8 friends. The goal is 24
 ## 3. Users
 
 - About 8 members, mostly Portuguese speakers, some not, in the UK and Portugal.
-- Time zone is per user, typically `Europe/London` or `Europe/Lisbon`. Default London.
+- Time zone is per user. The UK and mainland Portugal share one choice, stored as `Europe/London`. Default London.
 - The server owner sets the default language, initially English. Each user can choose Portuguese or English for the bot's replies to them. Posts addressed to everyone use the server default.
 
 ## 4. Principles
@@ -50,7 +50,7 @@ Feature numbers are identifiers. Build order is in section 7.
 | F0.4 | Admin config | Only admins can set which channels each feature uses. |
 | F0.5 | `/language` | Each user picks Portuguese or English for replies to them. Without a choice, the server default applies. |
 | F0.6 | Server default language | Only the server owner can change it. |
-| F0.7 | `/timezone` | Each user picks their time zone. |
+| F0.7 | `/timezone` | Each user picks from 24 whole-hour offsets, shown as `(GMT+00:00) tag (country)`. Daylight saving applies automatically. Half-hour zones are not offered. |
 
 ### F1: Music (required)
 

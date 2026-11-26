@@ -13,7 +13,7 @@ export const en = {
   'language.saved': 'I will reply to you in English.',
 
   'timezone.description': 'Set your time zone',
-  'timezone.option': 'Time zone, for example Europe/Lisbon',
+  'timezone.option': 'Your time zone',
   'timezone.saved': 'Your time zone is now {zone}.',
   'timezone.invalid': 'I do not know that time zone.',
 

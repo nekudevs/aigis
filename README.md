@@ -6,7 +6,7 @@ This is a private bot, built for one server. If you would like to set it up your
 
 ## Status
 
-**Milestone M0 (foundation) is written and passes its tests, but has not run against Discord yet.** The MVP will run on the operator's PC.
+**Milestone M0 (foundation) is working on Discord.** The MVP will run on the operator's PC.
 
 Working commands: `/ping`, `/help`, `/language`, `/timezone`, `/config`.
 
@@ -69,4 +69,5 @@ npm run build
 - 2026-11-26: second draft after review: music required, free-tier AI, translation, daily character, persona notes.
 - 2026-11-26: third draft: local hosting for the MVP, Krillion scoring, language defaults, W/L voting.
 - 2026-11-26: requirements and design approved.
-- 2026-11-26: M0 foundation, CI and `.env.example`. Documents committed locally; privacy policy and terms published as gists.
+- 2026-11-26: M0 foundation, CI and `.env.example`.
+- 2026-11-26: `/timezone` now offers a fixed list of 24 offsets. Documents committed locally; privacy policy and terms published as gists.

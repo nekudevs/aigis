@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { TIME_ZONES } from '../src/modules/system/service.js';
 import { GUILD_ID, MEMBER_ID, OWNER_ID, testApp } from './helpers.js';
 
 const CHANNEL = '444444444444444444';
@@ -74,12 +75,19 @@ describe('config channels', () => {
 });
 
 describe('timezone', () => {
-  it('stores the canonical name of a valid zone', async () => {
+  it('offers 24 offsets that the runtime recognises', () => {
+    expect(new Set(TIME_ZONES.map((entry) => entry.zone)).size).toBe(24);
+    for (const { zone } of TIME_ZONES) {
+      expect(() => new Intl.DateTimeFormat('en', { timeZone: zone }), zone).not.toThrow();
+    }
+  });
+
+  it('stores a named zone so daylight saving still applies', async () => {
     const { run, settings } = testApp();
 
-    await run({ command: 'timezone', options: { zone: ' europe/lisbon ' } });
+    await run({ command: 'timezone', options: { zone: 'America/New_York' } });
 
-    expect(settings.timeZoneFor(MEMBER_ID)).toBe('Europe/Lisbon');
+    expect(settings.timeZoneFor(MEMBER_ID)).toBe('America/New_York');
   });
 
   it('keeps the default when the zone is unknown', async () => {
@@ -95,7 +103,7 @@ describe('timezone', () => {
     const { run, settings } = testApp();
     await run({ command: 'language', options: { language: 'pt' } });
 
-    await run({ command: 'timezone', options: { zone: 'Europe/Lisbon' } });
+    await run({ command: 'timezone', options: { zone: 'Europe/London' } });
 
     expect(settings.localeFor(GUILD_ID, MEMBER_ID)).toBe('pt');
   });
