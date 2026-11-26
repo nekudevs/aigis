@@ -70,4 +70,5 @@ npm run build
 - 2026-11-26: third draft: local hosting for the MVP, Krillion scoring, language defaults, W/L voting.
 - 2026-11-26: requirements and design approved.
 - 2026-11-26: M0 foundation, CI and `.env.example`.
-- 2026-11-26: `/timezone` now offers a fixed list of 24 offsets. Documents committed locally; privacy policy and terms published as gists.
+- 2026-11-26: `/timezone` now offers a fixed list of 24 offsets.
+- 2026-11-26: review fix: a command that no longer exists now gets a reply. M0 merged ([PR #1](https://github.com/nekudevs/aigis/pull/1)). Documents committed locally; privacy policy and terms published as gists.
