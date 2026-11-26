@@ -1,0 +1,1 @@
+@project-docs/CLAUDE.md
