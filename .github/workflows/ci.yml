@@ -30,6 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: docker build -t aigis-bot .
+      # The image skips install scripts, so prove the native addon still loads.
+      - run: |
+          docker run --rm --network none aigis-bot node -e "new (require('better-sqlite3'))(':memory:').prepare('select 1').get()"
 
   secrets:
     runs-on: ubuntu-latest

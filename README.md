@@ -112,4 +112,4 @@ npm run build
 - 2026-11-26: `/timezone` now offers a fixed list of 24 offsets.
 - 2026-11-26: review fix: a command that no longer exists now gets a reply. M0 merged ([PR #1](https://github.com/nekudevs/aigis/pull/1)). Privacy policy and terms published as gists.
 - 2026-11-26: M1: Docker Compose and daily backups, verified on the operator's PC.
-- 2026-11-26: review fixes: backup folder permissions on Linux documented, `BACKUP_DIR` added to `.env.example`.
+- 2026-11-26: review fixes: backup folder permissions on Linux documented, `BACKUP_DIR` added to `.env.example`, CI now loads SQLite inside the image.
