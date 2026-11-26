@@ -70,6 +70,12 @@ To stay online, enable "Start Docker Desktop when you sign in" in Docker Desktop
 
 Aigis writes one backup a day and keeps the newest 14, in `./backups` or in `BACKUP_HOST_DIR` if set in `.env`. A folder that syncs off the PC protects against disk failure; backups contain members' data, so keep it private.
 
+On a Linux host, create that folder before the first start and give it to the container's user, or backups fail with "permission denied" (not needed with Docker Desktop on Windows):
+
+```sh
+mkdir -p backups && sudo chown 1000:1000 backups
+```
+
 To restore, replace the date:
 
 ```sh
@@ -106,3 +112,4 @@ npm run build
 - 2026-11-26: `/timezone` now offers a fixed list of 24 offsets.
 - 2026-11-26: review fix: a command that no longer exists now gets a reply. M0 merged ([PR #1](https://github.com/nekudevs/aigis/pull/1)). Privacy policy and terms published as gists.
 - 2026-11-26: M1: Docker Compose and daily backups, verified on the operator's PC.
+- 2026-11-26: review fixes: backup folder permissions on Linux documented, `BACKUP_DIR` added to `.env.example`.
